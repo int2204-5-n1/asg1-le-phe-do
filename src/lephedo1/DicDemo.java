@@ -74,7 +74,7 @@ class Word {
     public void modify(String word, String defi, int n) throws IOException{
         if(n==1){
             delWord(word,n);
-                    File path = new File("addWord_V.txt");
+                    File path = new File("data","addWord_V.txt");
                     if (!path.exists()) {
                         try {
                             path.createNewFile();
@@ -90,7 +90,7 @@ class Word {
                         Logger.getLogger(addWord_V.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     bw = new BufferedWriter(fw);
-                   String line = word+"<html>"+defi;
+                   String line = word+defi;
                     bw.write(line + "\r\n");
                     data_V_E.put(word,defi);
                     keys_V.add(word);
@@ -100,8 +100,8 @@ class Word {
             
         }
         else if(n==0){
-             delWord(word,n);
-                    File path = new File("addWord_E.txt");
+            delWord(word,n);
+                    File path = new File("data","addWord_E.txt");
                     if (!path.exists()) {
                         try {
                             path.createNewFile();
@@ -117,7 +117,7 @@ class Word {
                         Logger.getLogger(addWord_V.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     bw = new BufferedWriter(fw);
-                   String line = word+"<html>"+defi;
+                   String line = word+defi;
                     bw.write(line + "\r\n");
                     data_E_V.put(word,defi);
                     keys_E.add(word);
@@ -157,7 +157,7 @@ class Word {
         reader.close();
             */
         if(t==0){
-         File path = new File("recentWord_E.txt");
+         File path = new File("data","recentWord_E.txt");
         BufferedWriter bw = null;
         FileWriter fw = null;
         fw = new FileWriter(path.getAbsoluteFile(), true);
@@ -197,7 +197,7 @@ class Word {
         reader.close();
             */
         if(t==0){
-         File path = new File("recentWord_V.txt");
+         File path = new File("data","recentWord_V.txt");
         BufferedWriter bw = null;
         FileWriter fw = null;
         fw = new FileWriter(path.getAbsoluteFile(), true);
@@ -210,7 +210,7 @@ class Word {
     }
     public String[] getListRecent_E() throws IOException{
         
-        File path = new File("recentWord_E.txt");
+        File path = new File("data","recentWord_E.txt");
         BufferedReader reader;
         String line;
         FileInputStream file;
@@ -244,7 +244,7 @@ class Word {
         return list1;
     }
     public  String[] getListRecent_V(){
-        File path = new File("recentWord_V.txt");
+        File path = new File("data","recentWord_V.txt");
         BufferedReader reader;
         String line;
         FileInputStream file;
@@ -340,7 +340,7 @@ class Word {
     }
 
     public String[] ReadFile_Del() throws FileNotFoundException, IOException {
-        File path = new File("delWord.txt");
+        File path = new File("data","delWord.txt");
         BufferedReader reader;
         String line;
         FileInputStream file;
@@ -366,7 +366,7 @@ class Word {
 
     public void ReadFile_V_E() throws IOException {
         BufferedReader reader;
-        File path = new File("V_E.txt");
+        File path = new File("data","V_E.txt");
         String line, word, def;
         FileInputStream file;
         int index, index1;
@@ -416,7 +416,7 @@ class Word {
         }
         // BufferedReader reader;
          
-         path = new File("addWord_V.txt");
+         path = new File("data","addWord_V.txt");
         
 
        // String[] list1 = ReadFile_Del();
@@ -455,7 +455,7 @@ class Word {
 
     public void ReadFile_E_V() throws IOException {
         BufferedReader reader;
-        File path = new File("E_V.txt");
+        File path = new File("data","E_V.txt");
         String line, word, def;
         FileInputStream file;
         int index, index1;
@@ -576,7 +576,7 @@ class Word {
                 //     keys_V.remove(word);
             }
         }
-        File path = new File("delWord.txt");
+        File path = new File("data","delWord.txt");
         if (!path.exists()) {
             path.createNewFile();
         }
@@ -591,7 +591,7 @@ class Word {
     }
 
     public int releaseFile(String word, int n) throws FileNotFoundException, IOException {
-        File path = new File("data.html");
+        File path = new File("data","data.html");
         FileOutputStream file = new FileOutputStream(path);
         BufferedWriter write = new BufferedWriter(new OutputStreamWriter(file));
         if (n == 0) {
@@ -696,7 +696,7 @@ class Word {
                                 keys_E.add(a);
                                 index_E++;
                                 File path = null;
-                                path = new File("addWord_E.txt");
+                                path = new File("data","addWord_E.txt");
                                 //  if(n==1) path = new File("addWord_V.txt");
                                 if (!path.exists()) {
                                     try {
@@ -806,7 +806,7 @@ class Word {
                    data_V_E.put(a, a1);
                     keys_V.add(a);
                      index_V++;
-                    File path = new File("addWord_V.txt");
+                    File path = new File("data","addWord_V.txt");
                     if (!path.exists()) {
                         try {
                             path.createNewFile();
@@ -869,11 +869,7 @@ public class DicDemo {
     }
 }
 
-class cc {
 
-    public static String a1;
-    public static String b1;
-}
 /*
 class addWord_E extends JFrame {
 

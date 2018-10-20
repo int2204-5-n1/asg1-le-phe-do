@@ -8,10 +8,14 @@ package lephedo1;
 import com.sun.speech.freetts.Voice;
 import com.sun.speech.freetts.VoiceManager;
 import java.awt.Color;
+import java.awt.Event;
+import java.awt.FlowLayout;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**
@@ -28,6 +32,7 @@ public class Dicapp extends javax.swing.JFrame {
     int t1;
     private int t;
     String[] str = {""};
+    JLabel back ;
     public Dicapp() throws IOException {
         initComponents();
          System.setProperty("freetts.voices", "com.sun.speech.freetts.en.us.cmu_us_kal.KevinVoiceDirectory");
@@ -52,9 +57,11 @@ public class Dicapp extends javax.swing.JFrame {
         this.setVisible(false);
         this.getContentPane().setBackground(Color.white);
         this.setLocationRelativeTo(null);
-        this.setSize(1042, 770);
+       // this.setSize(1042, 770);
+       this.setBounds(200, 50,1042, 770);
         this.setResizable(false);
         pane1.setEditable(false);
+        
     }
 
     /**
@@ -78,6 +85,7 @@ public class Dicapp extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         pane1 = new javax.swing.JTextPane();
         jButton1 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         exit = new javax.swing.JMenuItem();
@@ -86,15 +94,17 @@ public class Dicapp extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         jMenuItem2.setText("jMenuItem2");
 
         jMenuItem5.setText("jMenuItem5");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBounds(new java.awt.Rectangle(500, 500, 1000, 770));
+        getContentPane().setLayout(null);
 
-        jPanel1.setBackground(java.awt.SystemColor.textHighlight);
+        jPanel1.setBackground(new java.awt.Color(51, 153, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
         text1.setText("jTextField1");
@@ -121,7 +131,7 @@ public class Dicapp extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lephedo1/images.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lephedo1/soundIcon.jpg"))); // NOI18N
         jLabel3.setText("jLabel3");
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -136,29 +146,33 @@ public class Dicapp extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addGap(19, 19, 19)
                         .addComponent(text1, javax.swing.GroupLayout.PREFERRED_SIZE, 913, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(299, 299, 299)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(250, 250, 250)
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(155, Short.MAX_VALUE))
+                .addContainerGap(128, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addGap(47, 47, 47)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(text1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
+
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(0, 0, 1110, 150);
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -172,9 +186,20 @@ public class Dicapp extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jList1);
 
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(12, 157, 218, 475);
+
         pane1.setContentType("text/html"); // NOI18N
         pane1.setFont(new java.awt.Font("Times New Roman", 3, 16)); // NOI18N
+        pane1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                pane1KeyPressed(evt);
+            }
+        });
         jScrollPane2.setViewportView(pane1);
+
+        getContentPane().add(jScrollPane2);
+        jScrollPane2.setBounds(242, 157, 718, 475);
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lephedo1/wasteBacket.png"))); // NOI18N
         jButton1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -183,12 +208,19 @@ public class Dicapp extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton1);
+        jButton1.setBounds(967, 575, 53, 57);
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lephedo1/background1.jpg"))); // NOI18N
+        jLabel2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(0, -40, 1160, 750);
 
         jMenuBar1.setBackground(java.awt.SystemColor.textHighlight);
         jMenuBar1.setForeground(java.awt.SystemColor.textHighlight);
 
-        jMenu1.setBackground(java.awt.SystemColor.textHighlight);
-        jMenu1.setForeground(java.awt.SystemColor.textHighlightText);
+        jMenu1.setBackground(new java.awt.Color(255, 255, 255));
+        jMenu1.setForeground(java.awt.SystemColor.textHighlight);
         jMenu1.setText("File");
         jMenu1.setFont(new java.awt.Font("Times New Roman", 3, 16)); // NOI18N
         jMenu1.setOpaque(true);
@@ -216,14 +248,18 @@ public class Dicapp extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setBackground(java.awt.SystemColor.textHighlight);
-        jMenu2.setForeground(java.awt.SystemColor.textHighlightText);
+        jMenu2.setBackground(new java.awt.Color(255, 255, 255));
+        jMenu2.setForeground(java.awt.SystemColor.textHighlight);
         jMenu2.setText("Edit");
         jMenu2.setFont(new java.awt.Font("Times New Roman", 3, 16)); // NOI18N
         jMenu2.setOpaque(true);
 
+        jMenu3.setForeground(java.awt.SystemColor.textHighlight);
         jMenu3.setText("Add word");
+        jMenu3.setFont(new java.awt.Font("Times New Roman", 3, 16)); // NOI18N
 
+        jMenuItem3.setFont(new java.awt.Font("Times New Roman", 3, 16)); // NOI18N
+        jMenuItem3.setForeground(java.awt.SystemColor.textHighlight);
         jMenuItem3.setText("Vietnamese-English");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -232,6 +268,8 @@ public class Dicapp extends javax.swing.JFrame {
         });
         jMenu3.add(jMenuItem3);
 
+        jMenuItem4.setFont(new java.awt.Font("Times New Roman", 3, 16)); // NOI18N
+        jMenuItem4.setForeground(java.awt.SystemColor.textHighlight);
         jMenuItem4.setText("English-Vietnamese");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -242,82 +280,22 @@ public class Dicapp extends javax.swing.JFrame {
 
         jMenu2.add(jMenu3);
 
-        jMenuBar1.add(jMenu2);
+        jMenuItem1.setFont(new java.awt.Font("Times New Roman", 3, 16)); // NOI18N
+        jMenuItem1.setForeground(java.awt.SystemColor.textHighlight);
+        jMenuItem1.setText("Modify");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem1);
 
-        jMenu4.setBackground(java.awt.SystemColor.textHighlight);
-        jMenu4.setForeground(java.awt.SystemColor.textHighlight);
-        jMenu4.setText("                                                                                                                                                                                                                                                                                                                                                                              ");
-        jMenu4.setOpaque(true);
-        jMenuBar1.add(jMenu4);
+        jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 718, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 475, Short.MAX_VALUE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING))
-                    .addComponent(jButton1))
-                .addGap(0, 46, Short.MAX_VALUE))
-        );
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void text1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_text1KeyReleased
-        // TODO add your handling code here:
-        if (t == 0) {
-            try {
-                explain_E_V();
-            } catch (IOException ex) {
-                Logger.getLogger(Dicapp.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        if (t == 1) {
-            try {
-                explain_V_E();
-            } catch (IOException ex) {
-                Logger.getLogger(Dicapp.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-    }//GEN-LAST:event_text1KeyReleased
-
-    private void text1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_text1MouseClicked
-        // TODO add your handling code here:
-         if (t == 0) {
-
-            try {
-                String[] list1 = dic.getListRecent_E();
-                jList1.setListData(list1);
-            } catch (IOException ex) {
-                Logger.getLogger(Dicapp.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } else if (t == 1) {
-            String[] list1 = dic.getListRecent_V();
-            jList1.setListData(list1);
-        }
-
-        text1.setText("");
-        pane1.setText("");
-    }//GEN-LAST:event_text1MouseClicked
 
     private void jList1ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList1ValueChanged
         // TODO add your handling code here:
@@ -359,43 +337,6 @@ public class Dicapp extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jList1ValueChanged
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-        String a = jComboBox1.getSelectedItem().toString();
-        if (("Vietnamese-English").equals(a)) {
-            t = 1;
-            String[] list2 = dic.getListRecent_V();
-            jList1.setListData(list2);
-            text1.setEditable(true);
-            text1.setText("Search here: ");
-            pane1.setText("");
-            /*
-            String b = text1.getText();
-            b=b.toLowerCase();
-            String[] list = null ;
-            try {
-                //    dic.ReadFile_V_E();
-                list = dic.getList_V_E(b);
-            } catch (IOException ex) {
-                Logger.getLogger(appDic.class.getName()).log(Level.SEVERE, null, ex);
-            }
-             */
-            // jList1.setListData(list);
-        } else if (("English-Vietnamese").equals(a)) {
-            t = 0;
-            try {
-                String[] list2 = dic.getListRecent_E();
-                jList1.setListData(list2);
-                pane1.setText("");
-            } catch (IOException ex) {
-                Logger.getLogger(Dicapp.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            text1.setEditable(true);
-            text1.setText("Search here: ");
-           
-        }
-    }//GEN-LAST:event_jComboBox1ActionPerformed
-
     private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
         // TODO add your handling code here:
         System.exit(WIDTH);
@@ -421,20 +362,6 @@ public class Dicapp extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenuItem4ActionPerformed
     public static final String VoiceName = "kevin16";
-    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-        // TODO add your handling code here:
-         Voice voice;
-        VoiceManager vm = VoiceManager.getInstance();
-        voice = vm.getVoice(VoiceName);
-        voice.allocate();
-        try {
-            voice.speak(jList1.getSelectedValue());
-
-        } catch (Exception e) {
-
-        }
-    }//GEN-LAST:event_jLabel3MouseClicked
-
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         // TODO add your handling code here:
         String b= text1.getText().toString();
@@ -489,6 +416,117 @@ public class Dicapp extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        // TODO add your handling code here:
+        Voice voice;
+        VoiceManager vm = VoiceManager.getInstance();
+        voice = vm.getVoice(VoiceName);
+        voice.allocate();
+        try {
+            voice.speak(jList1.getSelectedValue());
+
+        } catch (Exception e) {
+
+        }
+    }//GEN-LAST:event_jLabel3MouseClicked
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+        String a = jComboBox1.getSelectedItem().toString();
+        if (("Vietnamese-English").equals(a)) {
+            t = 1;
+            String[] list2 = dic.getListRecent_V();
+            jList1.setListData(list2);
+            text1.setEditable(true);
+            text1.setText("Search here: ");
+            pane1.setText("");
+            /*
+            String b = text1.getText();
+            b=b.toLowerCase();
+            String[] list = null ;
+            try {
+                //    dic.ReadFile_V_E();
+                list = dic.getList_V_E(b);
+            } catch (IOException ex) {
+                Logger.getLogger(appDic.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            */
+            // jList1.setListData(list);
+        } else if (("English-Vietnamese").equals(a)) {
+            t = 0;
+            try {
+                String[] list2 = dic.getListRecent_E();
+                jList1.setListData(list2);
+                pane1.setText("");
+            } catch (IOException ex) {
+                Logger.getLogger(Dicapp.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            text1.setEditable(true);
+            text1.setText("Search here: ");
+
+        }
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void text1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_text1KeyReleased
+        // TODO add your handling code here:
+        if (t == 0) {
+            try {
+                explain_E_V();
+            } catch (IOException ex) {
+                Logger.getLogger(Dicapp.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        if (t == 1) {
+            try {
+                explain_V_E();
+            } catch (IOException ex) {
+                Logger.getLogger(Dicapp.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_text1KeyReleased
+
+    private void text1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_text1MouseClicked
+        // TODO add your handling code here:
+        if (t == 0) {
+
+            try {
+                String[] list1 = dic.getListRecent_E();
+                jList1.setListData(list1);
+            } catch (IOException ex) {
+                Logger.getLogger(Dicapp.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else if (t == 1) {
+            String[] list1 = dic.getListRecent_V();
+            jList1.setListData(list1);
+        }
+
+        text1.setText("");
+        pane1.setText("");
+    }//GEN-LAST:event_text1MouseClicked
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        pane1.setEditable(true);
+        
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void pane1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pane1KeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode()==Event.ENTER){
+           int k = JOptionPane.showConfirmDialog(rootPane,"Do you want to save this word ?");
+           if(k==0){
+               try {
+                   dic.modify(text1.getText(),pane1.getText(),t);
+               } catch (IOException ex) {
+                   Logger.getLogger(Dicapp.class.getName()).log(Level.SEVERE, null, ex);
+               }
+               JOptionPane.showMessageDialog(rootPane,"Modify successfully");
+           }
+            pane1.setEditable(false);
+        }
+       
+    }//GEN-LAST:event_pane1KeyPressed
 
     /**
      * @param args the command line arguments
@@ -551,13 +589,14 @@ public class Dicapp extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JList<String> jList1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
