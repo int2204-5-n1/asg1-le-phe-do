@@ -130,8 +130,8 @@ class Word {
         if(n==0){
            // String[] list2 = ReadFile_Del();
             int t=0;
-         /*   
-         File path1 = new File("recentWord_E.txt");
+            
+        File path1 = new File("data","recentWord_E.txt");
         BufferedReader reader = null;
         String line;
         FileInputStream file;
@@ -155,7 +155,7 @@ class Word {
             Logger.getLogger(Word.class.getName()).log(Level.SEVERE, null, ex);
         }
         reader.close();
-            */
+            
         if(t==0){
          File path = new File("data","recentWord_E.txt");
         BufferedWriter bw = null;
@@ -172,7 +172,7 @@ class Word {
             
            // String[] list2 = ReadFile_Del();
             int t=0;
-      /*   File path1 = new File("recentWord_V.txt");
+         File path1 = new File("data","recentWord_V.txt");
         BufferedReader reader = null;
         String line;
         FileInputStream file;
@@ -181,6 +181,7 @@ class Word {
             file = new FileInputStream(path1);
             reader = new BufferedReader(new InputStreamReader(file));
             while ((line = reader.readLine()) != null) {
+                
                 line = line.trim();
                 //   System.out.println(line);
                 if(line.equals(word)) {
@@ -195,7 +196,6 @@ class Word {
             Logger.getLogger(Word.class.getName()).log(Level.SEVERE, null, ex);
         }
         reader.close();
-            */
         if(t==0){
          File path = new File("data","recentWord_V.txt");
         BufferedWriter bw = null;
@@ -591,19 +591,19 @@ class Word {
     }
 
     public int releaseFile(String word, int n) throws FileNotFoundException, IOException {
-        File path = new File("data","data.html");
+        File path = new File("data","word.html");
         FileOutputStream file = new FileOutputStream(path);
         BufferedWriter write = new BufferedWriter(new OutputStreamWriter(file));
         if (n == 0) {
-            if (data_E_V.get(word) == null) {
-                return 0;
-            }
+         //   if (data_E_V.get(word) == null) {
+         //       return 0;
+          //  }
             String a = data_E_V.get(word);
             write.write(a);
         } else if (n == 1) {
-            if (data_E_V.get(word) == null) {
-                return 0;
-            }
+           // if (data_E_V.get(word) == null) {
+           //     return 0;
+           // }
             String a = data_V_E.get(word);
             //  String b = a.substring(a.indexOf("<i>")+2,a.indexOf("</i>"));
             write.write(a);
