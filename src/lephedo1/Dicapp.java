@@ -5,6 +5,7 @@
  */
 package lephedo1;
 
+import com.sun.glass.events.KeyEvent;
 import com.sun.speech.freetts.Voice;
 import com.sun.speech.freetts.VoiceManager;
 import java.awt.Color;
@@ -35,7 +36,7 @@ public class Dicapp extends javax.swing.JFrame {
     JLabel back ;
     public Dicapp() throws IOException {
         initComponents();
-         System.setProperty("freetts.voices", "com.sun.speech.freetts.en.us.cmu_us_kal.KevinVoiceDirectory");
+        System.setProperty("freetts.voices", "com.sun.speech.freetts.en.us.cmu_us_kal.KevinVoiceDirectory");
         text1.setText("Search here");
         // delete.setVisible(false);
         t = 1;
@@ -85,16 +86,16 @@ public class Dicapp extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         pane1 = new javax.swing.JTextPane();
         jButton1 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         exit = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
+        addToFile = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        Modify = new javax.swing.JMenuItem();
 
         jMenuItem2.setText("jMenuItem2");
 
@@ -114,6 +115,9 @@ public class Dicapp extends javax.swing.JFrame {
             }
         });
         text1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                text1KeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 text1KeyReleased(evt);
             }
@@ -215,15 +219,17 @@ public class Dicapp extends javax.swing.JFrame {
         getContentPane().add(jButton1);
         jButton1.setBounds(967, 575, 53, 57);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lephedo1/background1.jpg"))); // NOI18N
-        jLabel2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(0, -40, 1120, 750);
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lephedo1/background1.jpg"))); // NOI18N
+        jLabel4.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(1, -30, 1110, 730);
 
         jMenuBar1.setBackground(java.awt.SystemColor.textHighlight);
+        jMenuBar1.setBorder(null);
         jMenuBar1.setForeground(java.awt.SystemColor.textHighlight);
+        jMenuBar1.setBorderPainted(false);
 
-        jMenu1.setBackground(new java.awt.Color(255, 255, 255));
+        jMenu1.setBackground(java.awt.SystemColor.text);
         jMenu1.setForeground(java.awt.SystemColor.textHighlight);
         jMenu1.setText("File");
         jMenu1.setFont(new java.awt.Font("Times New Roman", 3, 16)); // NOI18N
@@ -240,19 +246,19 @@ public class Dicapp extends javax.swing.JFrame {
         });
         jMenu1.add(exit);
 
-        jMenuItem6.setFont(new java.awt.Font("Times New Roman", 3, 16)); // NOI18N
-        jMenuItem6.setForeground(java.awt.SystemColor.textHighlight);
-        jMenuItem6.setText("Add to file");
-        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+        addToFile.setFont(new java.awt.Font("Times New Roman", 3, 16)); // NOI18N
+        addToFile.setForeground(java.awt.SystemColor.textHighlight);
+        addToFile.setText("Add to file");
+        addToFile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem6ActionPerformed(evt);
+                addToFileActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem6);
+        jMenu1.add(addToFile);
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setBackground(new java.awt.Color(255, 255, 255));
+        jMenu2.setBackground(java.awt.SystemColor.text);
         jMenu2.setForeground(java.awt.SystemColor.textHighlight);
         jMenu2.setText("Edit");
         jMenu2.setFont(new java.awt.Font("Times New Roman", 3, 16)); // NOI18N
@@ -284,15 +290,15 @@ public class Dicapp extends javax.swing.JFrame {
 
         jMenu2.add(jMenu3);
 
-        jMenuItem1.setFont(new java.awt.Font("Times New Roman", 3, 16)); // NOI18N
-        jMenuItem1.setForeground(java.awt.SystemColor.textHighlight);
-        jMenuItem1.setText("Modify");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        Modify.setFont(new java.awt.Font("Times New Roman", 3, 16)); // NOI18N
+        Modify.setForeground(java.awt.SystemColor.textHighlight);
+        Modify.setText("Modify");
+        Modify.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                ModifyActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem1);
+        jMenu2.add(Modify);
 
         jMenuBar1.add(jMenu2);
 
@@ -365,8 +371,7 @@ public class Dicapp extends javax.swing.JFrame {
             Logger.getLogger(Dicapp.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jMenuItem4ActionPerformed
-    public static final String VoiceName = "kevin16";
-    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+    private void addToFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addToFileActionPerformed
         // TODO add your handling code here:
         String b= text1.getText().toString();
         try {
@@ -374,13 +379,12 @@ public class Dicapp extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(Dicapp.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jMenuItem6ActionPerformed
+    }//GEN-LAST:event_addToFileActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
          String a = text1.getText();
         //  a=jList1.getSelectedValue().toString();
-        System.out.println(a + "1");
         if (n == -1) {
             t1 = 0;
             int k = JOptionPane.showConfirmDialog(rootPane, "Bạn có chắc chắn xoá không?");
@@ -402,7 +406,11 @@ public class Dicapp extends javax.swing.JFrame {
 
                 }
                 text1.setText("");
+                
                 jList1.setListData(str);
+               jList1.clearSelection();
+               
+             //  jList1.removeListSelectionListener(null);
             }
         }
 
@@ -420,7 +428,7 @@ public class Dicapp extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
-
+    public static final String VoiceName = "kevin16";
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         // TODO add your handling code here:
         Voice voice;
@@ -445,18 +453,6 @@ public class Dicapp extends javax.swing.JFrame {
             text1.setEditable(true);
             text1.setText("Search here: ");
             pane1.setText("");
-            /*
-            String b = text1.getText();
-            b=b.toLowerCase();
-            String[] list = null ;
-            try {
-                //    dic.ReadFile_V_E();
-                list = dic.getList_V_E(b);
-            } catch (IOException ex) {
-                Logger.getLogger(appDic.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            */
-            // jList1.setListData(list);
         } else if (("English-Vietnamese").equals(a)) {
             t = 0;
             try {
@@ -493,7 +489,6 @@ public class Dicapp extends javax.swing.JFrame {
     private void text1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_text1MouseClicked
         // TODO add your handling code here:
         if (t == 0) {
-
             try {
                 String[] list1 = dic.getListRecent_E();
                 jList1.setListData(list1);
@@ -504,16 +499,14 @@ public class Dicapp extends javax.swing.JFrame {
             String[] list1 = dic.getListRecent_V();
             jList1.setListData(list1);
         }
-
         text1.setText("");
         pane1.setText("");
     }//GEN-LAST:event_text1MouseClicked
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void ModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModifyActionPerformed
         // TODO add your handling code here:
         pane1.setEditable(true);
-        
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_ModifyActionPerformed
 
     private void pane1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pane1KeyPressed
         // TODO add your handling code here:
@@ -531,6 +524,48 @@ public class Dicapp extends javax.swing.JFrame {
         }
        
     }//GEN-LAST:event_pane1KeyPressed
+
+    private void text1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_text1KeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            String a = text1.getText();
+        if (t == 1) {
+            try {
+                if (t1 == -1) {
+                    dic.addRecent(a, 1);
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(Dicapp.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            byte[] utf8Bytes=dic.getDic_V_E(a).getBytes();
+            String b1 = null;
+            try {
+                b1 = new String(utf8Bytes,dic.getDic_V_E(a));
+            } catch (UnsupportedEncodingException ex) {
+                Logger.getLogger(Dicapp.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            pane1.setText(b1);
+            pane1.setText(dic.getDic_V_E(a));
+            
+        }
+        if (t == 0) {
+            try {
+                if (t1 == -1) {
+                    dic.addRecent(a, 0);
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(Dicapp.class.getName()).log(Level.SEVERE, null, ex);
+            }
+           
+            
+           // pane1.setText(b1);
+            pane1.setText(dic.getDic_E_V(a));
+            //     if(dic.getDic_E_V(a)==null) pane1.setText("tu nay da bi xoa");
+        }
+        text1.setText(jList1.getSelectedValue().toString());
+
+        }
+    }//GEN-LAST:event_text1KeyPressed
 
     /**
      * @param args the command line arguments
@@ -589,23 +624,23 @@ public class Dicapp extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem Modify;
+    private javax.swing.JMenuItem addToFile;
     private javax.swing.JMenuItem exit;
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JList<String> jList1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
