@@ -549,6 +549,7 @@ class Word {
                 //  keys_E.remove(word);
             }
         }
+        
         if (n == 1) {
             if (data_V_E.get(word) == null) {
                 return 0;

@@ -427,6 +427,7 @@ public class Dicapp extends javax.swing.JFrame {
                 Logger.getLogger(Dicapp.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+      //  dic.delWord(a, n)
     }//GEN-LAST:event_jButton1ActionPerformed
     public static final String VoiceName = "kevin16";
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
