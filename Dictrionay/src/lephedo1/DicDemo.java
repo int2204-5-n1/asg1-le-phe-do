@@ -330,7 +330,7 @@ class Word {
         return list;
     }
 
-    public String[] ReadFile_Del() throws FileNotFoundException, IOException {
+    public String[] ReadFile_Del() throws FileNotFoundException{
         File path = new File("data", "delWord.txt");
         BufferedReader reader;
         String line;
