@@ -78,7 +78,7 @@ public abstract class Enemy extends Character {
 	public void calculateMove() {
             double x1 = Game.getBomberSpeed();
             
-            System.out.println(_ai.calculateDirection());
+         //   System.out.println(_ai.calculateDirection());
            if(_ai.calculateDirection()==0){
                move(_x,_y-2*x1);
            }
