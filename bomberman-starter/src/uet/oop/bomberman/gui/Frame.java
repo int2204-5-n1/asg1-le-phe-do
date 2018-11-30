@@ -4,6 +4,9 @@ import uet.oop.bomberman.Game;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 /**
  * Swing Frame chứa toàn bộ các component
@@ -16,7 +19,7 @@ public class Frame extends JFrame {
 	
 	private Game _game;
 
-	public Frame() {
+	public Frame() throws InterruptedException {
 		
 		_containerpane = new JPanel(new BorderLayout());
 		_gamepane = new GamePanel(this);
@@ -33,8 +36,8 @@ public class Frame extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		pack();
 		setLocationRelativeTo(null);
-		setVisible(true);	
-		
+		setVisible(true);
+		Sound.MainSound();
 		_game.start();
 	}
 	
@@ -45,5 +48,8 @@ public class Frame extends JFrame {
 	public void setPoints(int points) {
 		_infopanel.setPoints(points);
 	}
+        
+
+    
 	
 }

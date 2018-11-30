@@ -16,8 +16,12 @@ import uet.oop.bomberman.Game;
 import uet.oop.bomberman.entities.LayeredEntity;
 import uet.oop.bomberman.entities.character.Bomber;
 import uet.oop.bomberman.entities.character.enemy.Balloon;
+import uet.oop.bomberman.entities.character.enemy.Oneal;
 import uet.oop.bomberman.entities.tile.Grass;
+import uet.oop.bomberman.entities.tile.Portal;
+import uet.oop.bomberman.entities.tile.Wall;
 import uet.oop.bomberman.entities.tile.destroyable.Brick;
+import uet.oop.bomberman.entities.tile.item.FlameItem;
 import uet.oop.bomberman.entities.tile.item.SpeedItem;
 import uet.oop.bomberman.exceptions.LoadLevelException;
 import uet.oop.bomberman.graphics.Screen;
@@ -32,7 +36,10 @@ public class FileLevelLoader extends LevelLoader {
      */
     private static char[][] _map;
     private static int[] x;
-
+    private static int t = 0;
+    public static int a;
+    public static int b;
+    public static int c;
     public FileLevelLoader(Board board, int level) throws LoadLevelException {
         super(board, level);
     }
@@ -41,8 +48,16 @@ public class FileLevelLoader extends LevelLoader {
 
     public void loadLevel(int level) {
         // System.getProperty("user.home");
+        //String name = "lelvels/Level"+(String)*(level+1)+".txt";
+        //level = level +1;
+        //String name= "lelvels/Level"+level+".txt";
+       // name = new String("lelvels/Level"+(String)level+".txt");
         ClassLoader c = ClassLoader.getSystemClassLoader();
-        File file = new File(c.getResource("levels/Level1.txt").getFile());
+        File file = null;
+        t++;
+        file = new File(c.getResource("levels/Level"+t+".txt").getFile());
+      //  else if(level ==1 ) file = new File(c.getResource("levels/Level2.txt").getFile());
+       // else if(level ==2)  file = new File(c.getResource("levels/Level3.txt").getFile());
         FileInputStream input;
         BufferedReader reader = null;
         try {
@@ -60,18 +75,19 @@ public class FileLevelLoader extends LevelLoader {
             _width = x[2];
             _height = x[1];
             _level = x[0];
+           // System.out.println(_width+" "+_height);
             for (int i = 0; i < x[1]; i++) {
                 line = reader.readLine();
-                
+
                 for (int j = 0; j < x[2]; j++) {
                     _map1[i][j] = line.charAt(j);
-                   
+
                 }
-                
+
             }
             _map = new char[x[2]][x[1]];
-            for(int i=0;i<x[1];i++){
-                for(int j=0;j<x[2];j++){
+            for (int i = 0; i < x[1]; i++) {
+                for (int j = 0; j < x[2]; j++) {
                     _map[j][i] = _map1[i][j];
                 }
             }
@@ -90,42 +106,96 @@ public class FileLevelLoader extends LevelLoader {
         // TODO: hãy xóa nó khi hoàn thành chức năng load màn chơi từ tệp cấu hình
         // thêm Wall
         for (int i = 0; i < _width; i++) {
-            for (int  j= 0; j < _height; j++) {
-                
-                if (_map[i][j]== '#') {
-                    int pos = i +j * _width;
+            for (int j = 0; j < _height; j++) {
+
+                if (_map[i][j] == '#') {
+                    int pos = i + j * _width;
                     Sprite sprite = Sprite.wall;
-                    _board.addEntity(pos, new Grass(i, j, sprite));
+                    _board.addEntity(pos, new Wall(i, j, sprite));
                 } else if (_map[i][j] == '*') {
-                   // int xB = 3, yB = 1;
+                    // int xB = 3, yB = 1;
                     _board.addEntity(i + j * _width,
                             new LayeredEntity(i, j,
                                     new Grass(i, j, Sprite.grass),
                                     new Brick(i, j, Sprite.brick)
                             )
                     );
-                }
-                else if(_map[i][j]=='p'){
+                } else if (_map[i][j] == 'p') {
                     int xBomber = i, yBomber = j;
                     _board.addCharacter(new Bomber(Coordinates.tileToPixel(xBomber), Coordinates.tileToPixel(yBomber) + Game.TILES_SIZE, _board));
-                        Screen.setOffset(0, 0);
-                        _board.addEntity(xBomber + yBomber * _width, new Grass(i, j, Sprite.grass));
-                }
-                else if (_map[i][j]=='1'){
-                int xE = i, yE = j;
-                    _board.addCharacter(new Balloon(Coordinates.tileToPixel(i), Coordinates.tileToPixel(j) + Game.TILES_SIZE, _board));
-                     _board.addEntity(xE + yE * _width, new Grass(i, j, Sprite.grass));
+                    // _board.addCharacter(new Bomber(i, j + Game.TILES_SIZE, _board));
 
-            }
+                    Screen.setOffset(0, 0);
+
+                    _board.addEntity(xBomber + yBomber * _width, new Grass(i, j, Sprite.grass));
+                } else if (_map[i][j] == '1') {
+                    int xE = i, yE = j;
+                    _board.addCharacter(new Balloon(Coordinates.tileToPixel(i), Coordinates.tileToPixel(j) + Game.TILES_SIZE, _board));
+                    _board.addEntity(xE + yE * _width, new Grass(i, j, Sprite.grass));
+
+                } else if (_map[i][j] == 's') {
+                    int xI = i, yI = j;
+                    _board.addEntity(xI + yI * _width,
+                            new LayeredEntity(xI, yI,
+                                    new Grass(xI, yI, Sprite.grass),
+                                    new SpeedItem(xI, yI, Sprite.powerup_speed),
+                                    new Brick(xI, yI, Sprite.brick)
+                            )
+                    );
+
+                } 
+                else if(_map[i][j]=='x'){
+                    a=i;
+                    b=j;
+                    c=_width;
+                    int xI = i, yI = j;
+                   
+                        _board.addEntity(xI + yI * _width,
+                            new LayeredEntity(xI, yI,
+                                    new Grass(xI, yI, Sprite.grass),
+                                    new Portal(xI, yI, Sprite.portal),
+                                    new Brick(xI, yI, Sprite.brick)
+                            )
+                    );
+                    
+                    
+                }
+                else if(_map[i][j]=='f'){
+                    int xI = i, yI = j;
+                    _board.addEntity(xI + yI * _width,
+                            new LayeredEntity(xI, yI,
+                                    new Grass(xI, yI, Sprite.grass),
+                                    new FlameItem(xI, yI, Sprite.powerup_flames),
+                                    new Brick(xI, yI, Sprite.brick)
+                            )
+                    );
+                }
+                else if(_map[i][j]=='b'){
+                    int xI = i, yI = j;
+                    _board.addEntity(xI + yI * _width,
+                            new LayeredEntity(xI, yI,
+                                    new Grass(xI, yI, Sprite.grass),
+                                    new SpeedItem(xI, yI, Sprite.powerup_bombs),
+                                    new Brick(xI, yI, Sprite.brick)
+                            )
+                    );
+                }
+                else if(_map[i][j]=='o'){
+                    int xE = i, yE = j;
+                    _board.addCharacter(new Oneal(Coordinates.tileToPixel(i), Coordinates.tileToPixel(j) + Game.TILES_SIZE, _board));
+                    _board.addEntity(xE + yE * _width, new Grass(i, j, Sprite.grass));
+
+
+                }
                 else {
                     int xE = i, yE = j;
-                   // _board.addCharacter(new Balloon(Coordinates.tileToPixel(i), Coordinates.tileToPixel(j) + Game.TILES_SIZE, _board));
-                     _board.addEntity(xE + yE * _width, new Grass(i, j, Sprite.grass));
+                    // _board.addCharacter(new Balloon(Coordinates.tileToPixel(i), Coordinates.tileToPixel(j) + Game.TILES_SIZE, _board));
+                    _board.addEntity(xE + yE * _width, new Grass(i, j, Sprite.grass));
 
                 }
             }
         }
-        
+
         /*
        for (int x = 0; x < 20; x++) {
             for (int y = 0; y < 20; y++) {
